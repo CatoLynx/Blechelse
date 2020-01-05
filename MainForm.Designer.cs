@@ -158,7 +158,7 @@
             this.miAdditionalBlock,
             this.miGong});
             this.cmAddType.Name = "cmAddType";
-            this.cmAddType.Size = new System.Drawing.Size(204, 290);
+            this.cmAddType.Size = new System.Drawing.Size(204, 312);
             // 
             // miIntermediateBlock
             // 
@@ -321,6 +321,7 @@
             this.miGong.Name = "miGong";
             this.miGong.Size = new System.Drawing.Size(203, 22);
             this.miGong.Text = "Gong";
+            this.miGong.Click += new System.EventHandler(this.miGong_Click);
             // 
             // gbLanguage
             // 

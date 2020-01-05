@@ -189,6 +189,11 @@ namespace Blechelse
             genericVoiceSnippetAddHandler("additional_blocks", "zusatztexte", false);
         }
 
+        private void miGong_Click(object sender, EventArgs e)
+        {
+            genericVoiceSnippetAddHandler("gongs", "../gong", false);
+        }
+
         // HELPER FUNCTIONS
 
         private void genericVoiceSnippetAddHandler(string dbTable, string baseDir, bool hasIntonation)
