@@ -18,7 +18,7 @@ namespace Blechelse
 
         public Backend(string dbFile)
         {
-            dbConn = new SQLiteConnection($"Data Source={dbFile}");
+            dbConn = new SQLiteConnection($"Data Source={dbFile};FailIfMissing=True;journal mode=Off;", true);
         }
 
         public List<t_DatabaseRecord> GetStationNames()
