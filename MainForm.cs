@@ -130,6 +130,7 @@ namespace Blechelse
         private void miStationName_Click(object sender, EventArgs e)
         {
             StationNameForm f = new StationNameForm(backend);
+            f.StartPosition = FormStartPosition.CenterParent;
             f.ShowDialog();
             VoiceSnippet result = f.SelectedStation;
             if (result.HasValue)
@@ -199,6 +200,7 @@ namespace Blechelse
         private void genericVoiceSnippetAddHandler(string dbTable, string baseDir, bool hasIntonation)
         {
             GenericVoiceSnippetForm f = new GenericVoiceSnippetForm(backend, dbTable, baseDir, hasIntonation);
+            f.StartPosition = FormStartPosition.CenterParent;
             f.ShowDialog();
             VoiceSnippet result = f.SelectedSnippet;
             if (result.HasValue)
