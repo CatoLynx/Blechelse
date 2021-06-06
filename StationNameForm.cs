@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Media;
 using System.Windows.Forms;
 
 namespace Blechelse
@@ -8,14 +9,17 @@ namespace Blechelse
     public partial class StationNameForm : Form
     {
         Backend backend;
+        string baseDir;
         List<t_DatabaseRecord> stationNames;
         List<t_DatabaseRecord> filteredStationNames = new List<t_DatabaseRecord>();
         public VoiceSnippet SelectedStation = new VoiceSnippet();
+        public MainForm parentForm;
 
-        public StationNameForm(Backend backend)
+        public StationNameForm(Backend backend, string baseDir)
         {
             InitializeComponent();
             this.backend = backend;
+            this.baseDir = baseDir;
             stationNames = backend.GetStationNames();
             filterStations("");
             ActiveControl = txtFilter;
@@ -42,6 +46,24 @@ namespace Blechelse
         {
             if (lbStationNames.SelectedIndex == -1) return;
             confirmSelection();
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            if (lbStationNames.SelectedIndex != -1)
+            {
+                t_DatabaseRecord snippet = filteredStationNames[lbStationNames.SelectedIndex];
+                VoiceSnippet vSnippet = new VoiceSnippet
+                {
+                    FileName = Path.Combine(baseDir, rbFullName.Checked ? "variante2" : "variante1", rbIntonationHigh.Checked ? "hoch" : "tief", snippet.FileName),
+                    DisplayText = snippet.ContentLong,
+                    HasValue = true
+                };
+
+                string filename = parentForm.addBaseDir(vSnippet.FileName);
+                SoundPlayer player = new SoundPlayer(filename);
+                player.PlaySync();
+            }
         }
 
         // HELPER FUNCTIONS

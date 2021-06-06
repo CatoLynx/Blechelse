@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Media;
 using System.Windows.Forms;
 
 namespace Blechelse
@@ -13,6 +14,7 @@ namespace Blechelse
         List<t_DatabaseRecord> voiceSnippets;
         List<t_DatabaseRecord> filteredVoiceSnippets = new List<t_DatabaseRecord>();
         public VoiceSnippet SelectedSnippet = new VoiceSnippet();
+        public MainForm parentForm;
 
         public GenericVoiceSnippetForm(Backend backend, string tableName, string baseDir, bool hasIntonation)
         {
@@ -50,6 +52,40 @@ namespace Blechelse
         {
             if (lbVoiceSnippets.SelectedIndex == -1) return;
             confirmSelection();
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            if (lbVoiceSnippets.SelectedIndex != -1)
+            {
+                t_DatabaseRecord snippet = filteredVoiceSnippets[lbVoiceSnippets.SelectedIndex];
+                if (hasIntonation)
+                {
+                    VoiceSnippet vSnippet = new VoiceSnippet
+                    {
+                        FileName = Path.Combine(baseDir, rbIntonationHigh.Checked ? "hoch" : "tief", snippet.FileName),
+                        DisplayText = snippet.ContentLong,
+                        HasValue = true
+                    };
+
+                    string filename = parentForm.addBaseDir(vSnippet.FileName);
+                    SoundPlayer player = new SoundPlayer(filename);
+                    player.PlaySync();
+                }
+                else
+                {
+                    VoiceSnippet vSnippet = new VoiceSnippet
+                    {
+                        FileName = Path.Combine(baseDir, snippet.FileName),
+                        DisplayText = snippet.ContentLong,
+                        HasValue = true
+                    };
+
+                    string filename = parentForm.addBaseDir(vSnippet.FileName);
+                    SoundPlayer player = new SoundPlayer(filename);
+                    player.PlaySync();
+                }
+            }
         }
 
         // HELPER FUNCTIONS

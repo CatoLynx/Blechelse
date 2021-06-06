@@ -36,6 +36,7 @@
             this.gbIntonation = new System.Windows.Forms.GroupBox();
             this.rbIntonationLow = new System.Windows.Forms.RadioButton();
             this.rbIntonationHigh = new System.Windows.Forms.RadioButton();
+            this.btnPlay = new System.Windows.Forms.Button();
             this.gbIntonation.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +84,7 @@
             this.gbIntonation.Controls.Add(this.rbIntonationHigh);
             this.gbIntonation.Location = new System.Drawing.Point(12, 256);
             this.gbIntonation.Name = "gbIntonation";
-            this.gbIntonation.Size = new System.Drawing.Size(260, 44);
+            this.gbIntonation.Size = new System.Drawing.Size(125, 44);
             this.gbIntonation.TabIndex = 10;
             this.gbIntonation.TabStop = false;
             this.gbIntonation.Text = "Intonation";
@@ -91,7 +92,7 @@
             // rbIntonationLow
             // 
             this.rbIntonationLow.AutoSize = true;
-            this.rbIntonationLow.Location = new System.Drawing.Point(84, 19);
+            this.rbIntonationLow.Location = new System.Drawing.Point(74, 19);
             this.rbIntonationLow.Name = "rbIntonationLow";
             this.rbIntonationLow.Size = new System.Drawing.Size(45, 17);
             this.rbIntonationLow.TabIndex = 1;
@@ -110,11 +111,22 @@
             this.rbIntonationHigh.Text = "High";
             this.rbIntonationHigh.UseVisualStyleBackColor = true;
             // 
+            // btnPlay
+            // 
+            this.btnPlay.Location = new System.Drawing.Point(147, 269);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(125, 23);
+            this.btnPlay.TabIndex = 11;
+            this.btnPlay.Text = "Play";
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
             // GenericVoiceSnippetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 339);
+            this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.gbIntonation);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -141,5 +153,6 @@
         private System.Windows.Forms.GroupBox gbIntonation;
         private System.Windows.Forms.RadioButton rbIntonationLow;
         private System.Windows.Forms.RadioButton rbIntonationHigh;
+        private System.Windows.Forms.Button btnPlay;
     }
 }

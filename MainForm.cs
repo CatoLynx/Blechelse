@@ -14,7 +14,7 @@ namespace Blechelse
         Backend backend;
         Thread soundThread;
         bool soundEnabled = false;
-        string audioDir;
+        public string audioDir;
 
         public MainForm()
         {
@@ -129,8 +129,9 @@ namespace Blechelse
 
         private void miStationName_Click(object sender, EventArgs e)
         {
-            StationNameForm f = new StationNameForm(backend);
+            StationNameForm f = new StationNameForm(backend, addBaseDir("ziele"));
             f.StartPosition = FormStartPosition.CenterParent;
+            f.parentForm = this;
             f.ShowDialog();
             VoiceSnippet result = f.SelectedStation;
             if (result.HasValue)
@@ -201,6 +202,7 @@ namespace Blechelse
         {
             GenericVoiceSnippetForm f = new GenericVoiceSnippetForm(backend, dbTable, baseDir, hasIntonation);
             f.StartPosition = FormStartPosition.CenterParent;
+            f.parentForm = this;
             f.ShowDialog();
             VoiceSnippet result = f.SelectedSnippet;
             if (result.HasValue)
@@ -210,7 +212,7 @@ namespace Blechelse
             }
         }
 
-        private string addBaseDir(string filename)
+        public string addBaseDir(string filename)
         {
             string baseDir = "";
             if (rbLangGerman.Checked)
